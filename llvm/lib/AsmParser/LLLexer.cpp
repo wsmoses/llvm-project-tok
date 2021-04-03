@@ -10,7 +10,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "LLLexer.h"
+#include "llvm/AsmParser/LLLexer.h"
 #include "llvm/ADT/APInt.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/StringExtras.h"
@@ -189,7 +189,9 @@ lltok::Kind LLLexer::LexToken() {
       // Handle letters: [a-zA-Z_]
       if (isalpha(static_cast<unsigned char>(CurChar)) || CurChar == '_')
         return LexIdentifier();
-
+      llvm::errs() << "defaulterror\n";
+      llvm::errs() << "int: " << CurChar << "\n";
+      llvm::errs() << "char: " << (char)CurChar << "\n";
       return lltok::Error;
     case EOF: return lltok::Eof;
     case 0:
